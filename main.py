@@ -17,12 +17,11 @@ def two():
 
 @app.route("/3")
 def three():
-    return "Hello World!"
-
+    return "3"
 
 @app.route("/4")
 def four():
-    return "Hello World!"
+    return "4!"
 
 
 
