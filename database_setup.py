@@ -21,4 +21,5 @@ class User(Base):
 #	user_id = Column(Integer, ForeignKey('user.id'), nullable = False)
 #	user = relationship(User)
 
-
+engine = create_engine('sqLite:///main.db')
+Base.metadata.create_all(engine)
