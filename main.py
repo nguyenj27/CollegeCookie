@@ -1,28 +1,38 @@
-from flask import Flask
+from flask import Flask, render_template, request
 app = Flask(__name__)
+
+
+userinfo = {}
 
 @app.route("/")
 def main():
-    return "don't eat lunch alone friend!"
+    return "maidfn page"
 
 
 @app.route("/login")
 def login():
-    return "this is the login page."
+    return render_template('login.html')
 
-@app.route("/2")
-def two():
-    return "Hello World!"
+
+@app.route('/login', methods=['POST'])
+def doLogin():
+    print request.form["username"]
+    userinfo["username"] = request.form["username"]
+    userinfo["password"] = request.form["password"]
+    return render_template('main.html')
 
 
 @app.route("/3")
 def three():
     return "3"
 
+
 @app.route("/4")
 def four():
     return "4!"
 
 
-
-
+if __name__ == "__main__":
+    app.run()
+    app.secret_key = 'supersecretkey'
+    app.debug = True
