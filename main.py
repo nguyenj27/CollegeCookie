@@ -2,6 +2,13 @@ import re
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
+
+####################
+# TO DO
+# 1. validate the username and password
+# 2. work on the front end part of the code.
+
+
 # just for temporary
 userinfo = {}
 
@@ -24,19 +31,21 @@ def doLogin():
                            password=userinfo["password"])
 
 
-#def validateUsername(username):
-
-
-
 @app.route('/signup', methods=['POST'])
 def signUp():
     print "singup page."
     username = request.form["username"]
     password = request.form["password"]
 
-    validateUsername(username)
-    validatePassword(password)
+    # check if the username already exist
+    # validateUsername(username)
+    # validagte the password
+    # validatePassword(password)
 
+    userinfo["username"] = username
+    userinfo["password"] = password
+
+    # save the user information to the database.
 
 
 @app.route("/3")
