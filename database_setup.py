@@ -15,9 +15,10 @@ class User(Base):
 	name = Column(String(250), nullable = False)
 	password = Column(String(250), nullable = False)
 	school_name = Column(String(50), nullable = False)
-	breakfast = Column(Float, nullable = True)
-	lunch = Column(Float, nullable = True)
-	dinner = Column(Float, nullable = True)
+	breakfast = Column(Integer, nullable = True)
+	lunch = Column(Integer, nullable = True)
+	dinner = Column(Integer, nullable = True)
+	profile = Column(String(200), nullable = True)
 
 
 # class Time(Base):
