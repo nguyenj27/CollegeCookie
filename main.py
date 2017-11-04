@@ -100,7 +100,7 @@ def data():
 
     q = session.query(Day).filter_by()
 
-    times = session.query(User, Day).filter_by(Day.day=1).all()
+#    times = session.query(User, Day).filter_by(Day.day=1).all()
     for time in times:
         print time.day
 
