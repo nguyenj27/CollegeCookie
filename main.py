@@ -41,11 +41,12 @@ def doLogin():
     userinfo["username"] = request.form["username"]
     userinfo["password"] = request.form["password"]
 
-    User(name=username, password=password, school_name="UIC")
-    dbSession.add(User)
+    user = User(name=userinfo["username"], password=userinfo["password"],
+          school_name="UIC")
+    dbSession.add(user)
     print "added an user"
 
-    return render_template('userinfo.html', username=userinfo["username"],
+    return render_template('page.html', username=userinfo["username"],
                            password=userinfo["password"])
 
 

@@ -6,6 +6,8 @@ from sqlalchemy import Column, String, Integer, ForeignKey, DateTime, func, \
 
 from sqlalchemy.orm import relationship
 
+
+
 Base = declarative_base()
 
 class User(Base):
@@ -25,4 +27,4 @@ class User(Base):
 #	user = relationship(User)
 
 engine = create_engine('sqlite:///main.db')
-Base.metadate.create_all(engine)
+Base.metadata.create_all(engine)
