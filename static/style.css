@@ -1,0 +1,60 @@
+p {
+	color: red;
+	font-size: 200%;
+	text-align: center;
+	font-family: "Helvetica";
+
+}
+info
+{
+	font-size: 130%;
+	float: left;
+	margin: 1.5%;
+	width:30%;
+	font-family: "Helvetica";
+}
+opt
+{
+	text-align: center;
+	font-size: 150%;
+	float: right;
+	margin: 1.5%;
+	width: 30%;
+	font-family: "Helvetica";
+}
+calendar
+{
+	text-align: center;
+	float: right;
+	font-size: 150%;
+	margin: 1.5%;
+	width: 30%;
+	font-family: "Helvetica";
+}
+td,th
+{
+	border:1px solid blue;
+	margin: 1.5%;
+	width: 28%;
+}
+table
+{
+	border:1px solid blue;
+	float: left;
+	margin: 1.5%;
+	width: 28%;
+}
+table2
+{
+	border:1px solid blue;
+	float: left
+	margin: 1.5%;
+	width: 28%;
+}
+table3
+{
+	border:1px solid blue;
+	float: right;
+	margin: 1.5%;
+	width: 28%;
+}
