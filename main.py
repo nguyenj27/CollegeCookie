@@ -19,7 +19,8 @@ def doLogin():
     print request.form["username"]
     userinfo["username"] = request.form["username"]
     userinfo["password"] = request.form["password"]
-    return render_template('main.html')
+    return render_template('userinfo.html', username=userinfo["username"],
+                           password=userinfo["password"])
 
 
 @app.route("/3")
