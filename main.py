@@ -91,7 +91,6 @@ def data():
     users = session.query(User).filter_by(school_name=login_session["school"]).all()
     user_times = session.query(Day).filter_by(user_id=login_session["user_id"])
 
-
     days_available = []
     for time in user_times:
         days_available.append(time)
@@ -99,11 +98,6 @@ def data():
     length = len(days_available)
 
     q = session.query(Day).filter_by()
-
-#    times = session.query(User, Day).filter_by(Day.day=1).all()
-    for time in times:
-        print time.day
-
     return render_template('users.html', users=users)
 
 
