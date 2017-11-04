@@ -91,13 +91,24 @@ def data():
     users = session.query(User).filter_by(school_name=login_session["school"]).all()
     user_times = session.query(Day).filter_by(user_id=login_session["user_id"])
 
+
     days_available = []
     for time in user_times:
         days_available.append(time)
         print time
     length = len(days_available)
+
     q = session.query(Day).filter_by()
+
     return render_template('users.html', users=users)
+
+
+@app.route('/jen')
+def jen():
+
+    users = session.query(User).all()
+
+    return render_template('matching.html', users=users)
 
 
 @app.route("/seeding")
