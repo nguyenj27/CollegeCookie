@@ -10,15 +10,22 @@ from sqlalchemy.orm import relationship
 Base = declarative_base()
 
 class User(Base):
-	__tablename__ = 'User'
+	__tablename__ = 'user'
 	id = Column(Integer, primary_key = True)
 	name = Column(String(250), nullable = False)
 	password = Column(String(250), nullable = False)
 	school_name = Column(String(50), nullable = False)
-	breakfast = Column(Integer, nullable = True)
-	lunch = Column(Integer, nullable = True)
-	dinner = Column(Integer, nullable = True)
 	profile = Column(String(200), nullable = True)
+
+
+class Day(Base):
+	__tablename__ = 'dayTime'
+	id = Column(Integer, primary_key = True)
+	time = Column(Integer, nullable = False)
+	day = Column(Integer, nullable = False)
+	available_location = Column(String(100), nullable = True)
+	user_id = Column(Integer, ForeignKey('user.id'))
+	user = relationship(User)
 
 
 # class Time(Base):

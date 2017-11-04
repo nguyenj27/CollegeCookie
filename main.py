@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask import session as login_session
 from sqlalchemy import create_engine, asc, desc, and_
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, User
+from database_setup import Base, User, Day
 
 
 app = Flask(__name__)
@@ -71,32 +71,58 @@ def signUp():
     return render_template('page.html')
     # save the user information to the database.
 
+
 @app.route('/data')
 def data():
     print("/data")
     users = session.query(User).order_by(asc(User.id))
+    user_times = session.query(Day).filter_by(name=login_session[
+        "username"])
+
     return render_template('users.html', users=users)
+
+
 
 
 @app.route("/seeding")
 def three():
+    session.add(User(name="orange", password="123", school_name="UIC", profile="./static/images/profile.png"))
+    session.add(Day(time=11*60, day=1, available_location="student center",
+                    user_id=1))
 
-    session.add(User(name="orange", password="123", school_name="UIC",
-                     breakfast=8*60*60))
     session.add(User(name="apple", password="123", school_name="UIC",
-                     breakfast=7*60*60 + 30*60))
-    session.add(User(name="banana", password="123", school_name="UIC",
-                     breakfast=8*60*60 + 20*60))
-    session.add(User(name="oxygen", password="123", school_name="UIC",
-                     breakfast=9*60*60))
-    session.add(User(name="nitrogen", password="123", school_name="UIC",
-                     breakfast=9*60*60 + 10*60))
-    session.add(User(name="steak", password="123", school_name="UIC",
-                     breakfast=9*60*60 + 30*60))
-    session.add(User(name="fish", password="123", school_name="UIC",
-                     breakfast=10*60*60 + 10*60))
+                     profile="./static/images/profile.png"))
+    session.add(Day(time=12*60 + 30, day=1, available_location="library",
+                    user_id=2))
+
+
+    session.add(User(name="banana", password="123", school_name="UIC", profile="./static/images/profile.png"))
+    session.add(Day(time=11*60 + 30, day=1, available_location="student center",
+                    user_id=1))
+
+
+    session.add(User(name="oxygen", password="123", school_name="UIC", profile="./static/images/profile.png"))
+    session.add(Day(time=11*60, day=2, available_location="student center",
+                    user_id=1))
+
+
+    session.add(User(name="nitrogen", password="123", school_name="UIC", profile="./static/images/profile.png"))
+    session.add(Day(time=11*60, day=2, available_location="student center",
+                    user_id=1))
+
+
+    session.add(User(name="steak", password="123", school_name="UIC", profile="./static/images/profile.png"))
+    session.add(Day(time=11*60, day=2, available_location="student center",
+                    user_id=1))
+
+
+    session.add(User(name="fish", password="123", school_name="UIC", profile="./static/images/profile.png"))
+    session.add(Day(time=12*60 + 30, day=2, available_location="student center",
+                    user_id=1))
 
     session.commit()
+
+
 
     return redirect(url_for('data'))
 
