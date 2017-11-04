@@ -7,11 +7,10 @@ from sqlalchemy import Column, String, Integer, ForeignKey, DateTime, func, \
 from sqlalchemy.orm import relationship
 
 
-
 Base = declarative_base()
 
 class User(Base):
-	__tablename__ = 'user'
+	__tablename__ = 'User'
 	id = Column(Integer, primary_key = True)
 	name = Column(String(250), nullable = False)
 	password = Column(String(250), nullable = False)
@@ -19,6 +18,7 @@ class User(Base):
 	breakfast = Column(Float, nullable = True)
 	lunch = Column(Float, nullable = True)
 	dinner = Column(Float, nullable = True)
+
 
 # class Time(Base):
 #	_tablename_= 'Time'

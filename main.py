@@ -17,12 +17,11 @@ app = Flask(__name__)
 userinfo = {}
 
 
-engine = create_engine('sqlite:///flashcard.db')
+engine = create_engine('sqlite:///main.db')
 
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
-
-dbSession = DBSession()
+session = DBSession()
 
 
 @app.route("/")
@@ -44,12 +43,16 @@ def doLogin():
     user = User(name=userinfo["username"], password=userinfo["password"],
           school_name="UIC")
     school = user.school_name
-    dbSession.add(user)
+    session.add(user)
     print "added an user"
+
+    userInstance = session.query(User).filter_by(name=userinfo[
+        'username']).one()
+    print "this is the user input that you just typed"
+    print userInstance.name
 
     return render_template('page.html', username=userinfo["username"],
                            password=userinfo["password"], school=school )
-
 
 
 @app.route('/signup', methods=['POST'])
@@ -63,6 +66,13 @@ def signUp():
 
     return render_template('userinfo.html')
     # save the user information to the database.
+
+
+@app.route('/data')
+def data():
+    for instance in session.query(User).order_by(User.id):
+        print(instance.name)
+    return "hello"
 
 
 @app.route("/3")
