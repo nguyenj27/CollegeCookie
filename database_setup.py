@@ -12,9 +12,11 @@ Base = declarative_base()
 class User(Base):
 	__tablename__ = 'user'
 	id = Column(Integer, primary_key = True)
-	name = Column(String(250), nullable = False)
-	password = Column(String(250), nullable = False)
-	school_name = Column(String(50), nullable = False)
+	name = Column(String(20), nullable = False)
+	legal_name = Column(String(30), nullable = False)
+	password = Column(String(20), nullable = False)
+	school_name = Column(String(20), nullable = False)
+	phone_number = Column(String(12), nullable = False)
 	profile = Column(String(200), nullable = True)
 
 
