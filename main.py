@@ -43,11 +43,12 @@ def doLogin():
 
     user = User(name=userinfo["username"], password=userinfo["password"],
           school_name="UIC")
+    school = user.school_name
     dbSession.add(user)
     print "added an user"
 
     return render_template('page.html', username=userinfo["username"],
-                           password=userinfo["password"])
+                           password=userinfo["password"], school=school )
 
 
 
