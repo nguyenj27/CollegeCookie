@@ -96,7 +96,6 @@ def data():
         days_available.append(time)
         print time
     length = len(days_available)
-
     q = session.query(Day).filter_by()
     return render_template('users.html', users=users)
 
