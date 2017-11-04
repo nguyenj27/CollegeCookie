@@ -1,3 +1,4 @@
+import re
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
@@ -21,6 +22,21 @@ def doLogin():
     userinfo["password"] = request.form["password"]
     return render_template('userinfo.html', username=userinfo["username"],
                            password=userinfo["password"])
+
+
+#def validateUsername(username):
+
+
+
+@app.route('/signup', methods=['POST'])
+def signUp():
+    print "singup page."
+    username = request.form["username"]
+    password = request.form["password"]
+
+    validateUsername(username)
+    validatePassword(password)
+
 
 
 @app.route("/3")
