@@ -4,7 +4,7 @@ from flask import session as login_session
 from sqlalchemy import create_engine, asc, desc, and_
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, Day
-
+import datetime
 
 app = Flask(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
@@ -38,7 +38,6 @@ def login():
 def logout():
     login_session.clear()
     return render_template('login.html')
-
 
 
 @app.route('/login', methods=['POST'])
@@ -86,19 +85,37 @@ def printUserInfo():
 def data():
 
     printUserInfo()
+    error = {}
 
     print("/data")
     users = session.query(User).filter_by(school_name=login_session["school"]).all()
-    user_times = session.query(Day).filter_by(user_id=login_session["user_id"])
+
+    userAvailableDays = []
+    usertimes = session.query(Day).filter_by(user_id=login_session["user_id"])
+    for a in usertimes:
+        userAvailableDays.append(a.day)
 
 
-    days_available = []
-    for time in user_times:
-        days_available.append(time)
-        print time
-    length = len(days_available)
 
-    q = session.query(Day).filter_by()
+    now = datetime.datetime.today().weekday() - 3
+    if now in userAvailableDays:
+        user_time = session.query(Day).filter_by(user_id=login_session[
+            "user_id"], day=now).one()
+        users_times = session.query(Day).filter_by(day=now).all()
+        print login_session["user_id"]
+        print "current day: ", now
+        matching = {}
+
+        for t in users_times:
+            #print "t: ", t
+            #print "abs(t.time - user_time.time): ",abs(t.time - user_time.time)
+            if abs(t.time - user_time.time) <= 30:
+                user = session.query(User).filter_by(id=t.user_id).one()
+                print "available user: ", user.name
+    else:
+        error["noMatching"] = "You don't have any matching schedule today!"
+
+    # Do it python way!
 
     return render_template('users.html', users=users)
 
@@ -155,7 +172,9 @@ def three():
                     user_id=2))
 
     session.add(Day(time=11 * 60 + 30, day=1, available_location="student "
-                                                                 "center",user_id=1))
+                                                                 "center",
+                    user_id=2))
+
     session.add(Day(time=11 * 60, day=2, available_location="student center",
                     user_id=1))
 
@@ -164,6 +183,20 @@ def three():
 
     session.add(Day(time=11 * 60, day=4, available_location="student center",
                     user_id=1))
+
+    session.add(Day(time=11 * 60, day=1, available_location="library",
+                    user_id=3))
+
+    session.add(Day(time=11*60, day=2, available_location="cafeteria",
+                    user_id=2))
+    session.add(Day(time=11 * 60 + 30, day=1, available_location="cafeteria",
+                    user_id=4))
+
+    session.add(Day(time=12*60, day=2, available_location="A-20", user_id=4))
+
+    session.add(Day(time=11*60, day=2, available_location="Cafeteria",
+                    user_id=5))
+
 
     session.commit()
 
