@@ -116,15 +116,14 @@ def data():
                 usr["name"] = user.name
                 usr["school_name"] = user.school_name
                 usr["profile"] = user.profile
-                usr["phone_umber"] = user.phone_number
+                usr["phone_number"] = user.phone_number
                 usr["time"] = t.time/60
-                matching.append(usr)
+                matching.append(dict(usr))
 
                 print "available user: ", user.name
     else:
         error["noMatching"] = "You don't have any matching schedule today!"
 
-    # Do it python way!
 
     return render_template('matching.html', matching=matching)
 
