@@ -11,8 +11,9 @@ p {
 	font-size: 200%;
 	text-align: center;
 	font-family: "Helvetica";
-
 }
+
+
 td,th
 {
 	text-align: center;
@@ -20,6 +21,8 @@ td,th
 	margin: 1.5%;
 	width: 28%;
 }
+
+
 table
 {
 	display: block;
@@ -27,6 +30,8 @@ table
 	border:5px solid blue;
 	width: 28%;
 }
+
+
 button
 {
 	background-color: #4CAF50;
@@ -42,6 +47,5 @@ button
 
 body
 {
-	background-size:100% 100%;
 	background-repeat: repeat;
 }

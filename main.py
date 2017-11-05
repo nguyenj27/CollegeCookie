@@ -24,6 +24,8 @@ def main():
 
 @app.route("/login")
 def login():
+    if 'username' in login_session:
+        return redirect(url_for('data'))
     return render_template('login.html')
 
 
@@ -46,8 +48,6 @@ def whoami():
 
 @app.route('/login', methods=['POST'])
 def doLogin():
-    if 'username' in login_session:
-        return redirect(url_for('data'))
 
     ret = session.query(exists().where(User.name == request.form["username"]
                                    )).scalar()
@@ -162,7 +162,8 @@ def data():
         error["noMatching"] = "You don't have any matching schedule today!"
 
 
-    return render_template('matching2.html', matching=matching)
+    return render_template('matching2.html', matching=matching,
+                           user=login_session["username"])
 
 
 @app.route('/setTimes', methods=["GET", "POST"])
@@ -180,7 +181,6 @@ def setTimes():
         return redirect(url_for('data'))
     if request.method == 'GET':
         return render_template('buttons.html')
-
 
 
 @app.route("/seeding")
