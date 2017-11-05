@@ -82,20 +82,20 @@ def printUserInfo():
 
 
 def getTime(minutes):
-    hour = str(minutes/60)
-    minute = str(minutes % 60)
-    ampm = ""
-    if hr<3:
+    hour = minutes/60
+    minute = minutes % 60
+    hour_string = str(hour)
+    minute_string = str(minute)
+    if(minute_string == '0'):
+        minute_string = '00'
+    if hour<3:
         ampm = "P.M"
-    if hr>7:
+    if hour>7:
         ampm = "A.M"
 
-    concat = 
-
-
-
-    hour = str(hour)
-    minute = str(minute)
+    concat = hour_string + ":" + minute_string + " " + ampm
+    print concat
+    return concat
 
 
 @app.route('/data')
