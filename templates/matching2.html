@@ -26,28 +26,40 @@
             </div>
         </div>
     </div>
-
-    {% for m in matching%}
     <div class="row">
+        <div class="col">
+            <div class="alert alert-success" role="alert">
+            We found<strong> {{matching | length}}</strong> people who have
+                similar lunch schedule today!
+        </div>
+        </div>
+    </div>
+    {% for m in matching%}
+    <div class="row cards-row">
         <div class="col-3">
             <div class="card">
                 <img class="card-img-top profile-img" src="{{m.profile}}"
                      align="middle">
-                <div class="card-block">
+                <div class="card-block card-details">
                     <p class="card-text">{{m.name}}</p>
-                    <h4>bio</h4>
+                    <h5>bio</h5>
                     <p>{{m.bio}}</p>
-
                     <a href="#" class="btn btn-primary">Text
                         Message</a>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card">
+            <div class="card card-details">
                 <div class="card-block">
-                    <p class="card-text">
-                        {{m.name}} Details
+                    <h4 class="card-details-text">
+                        {{m.name}}
+                    </h4>
+                    <p class="card-details-text">
+                        {{m.school_name}}
+                    </p>
+                    <p class="card-details-text">
+                        {{m.time}}
                     </p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
@@ -55,8 +67,6 @@
         </div>
     </div>
     {% endfor %}
-
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"

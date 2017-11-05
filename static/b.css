@@ -4,3 +4,16 @@
     border-radius: 50%;
     width: 150px;
 }
+
+.cards-row {
+    padding-bottom: 15px;
+    height: 370px
+}
+
+.card-details {
+    height: 100%
+}
+
+.card-details-text {
+    color: blue;
+}

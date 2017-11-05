@@ -81,6 +81,23 @@ def printUserInfo():
     print "user name: " , login_session["username"]
 
 
+def getTime(minutes):
+    hour = str(minutes/60)
+    minute = str(minutes % 60)
+    ampm = ""
+    if hr<3:
+        ampm = "P.M"
+    if hr>7:
+        ampm = "A.M"
+
+    concat = 
+
+
+
+    hour = str(hour)
+    minute = str(minute)
+
+
 @app.route('/data')
 def data():
 
@@ -106,13 +123,13 @@ def data():
         print "current day: ", now
 
         for t in users_times:
-            if abs(t.time - user_time.time) <= 30:
+            if abs(t.time - user_time.time) <= 40:
                 user = session.query(User).filter_by(id=t.user_id).one()
                 usr["name"] = user.name
                 usr["school_name"] = user.school_name
                 usr["profile"] = user.profile
                 usr["phone_number"] = user.phone_number
-                usr["time"] = t.time/60
+                usr["time"] = getTime(t.time)
                 usr["bio"] = user.bio
                 matching.append(dict(usr))
 
