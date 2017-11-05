@@ -4,6 +4,7 @@ from flask import session as login_session
 from sqlalchemy import create_engine, asc, desc, and_
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, Day
+from twilio.rest import TwilioRestClient
 import datetime
 
 app = Flask(__name__)
@@ -214,6 +215,29 @@ def three():
 @app.route("/4")
 def four():
     return "4!"
+
+@app.route("/twilio")
+def twilio():
+    # q = session.query(User)
+    return render_template('twilio.html')
+    # return q.column_descriptions
+
+@app.route("/twilio", methods = ["POST"])
+def twilio_post():
+    account_sid = "AC7d5c71c0797a0aa04f9f1efcd6c15e05"
+    auth_token = "cdf9182e972608bc41a94145bfe22667"
+    fromnumber = "+12244780132 "
+    tonumber = "+17733296548"
+    body_text = "Kappa"
+    client = TwilioRestClient(account_sid, auth_token)
+    _body = request.form['text']
+    message = client.messages.create(
+    to="+17733296547",
+    from_="+12244780132",
+    body=_body)
+    return "Message successfully sent!"
+#     # print(message.sid)
+
 
 
 if __name__ == "__main__":
