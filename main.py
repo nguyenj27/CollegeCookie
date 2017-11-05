@@ -36,21 +36,21 @@ def logout():
 
 @app.route("/currentUser")
 def whoami():
-    if login_session["username"]:
+    if 'username' in login_session:
         time = session.query(Day).filter_by(day = datetime.datetime.today(
 
-        ).weekday() - 5).one()
+        ).weekday()).one()
 
         return login_session["username"], time
 
 
 @app.route('/login', methods=['POST'])
 def doLogin():
-    if login_session["user_id"]:
+    if 'username' in login_session:
         return redirect(url_for('data'))
-    print request.form["username"]
+
     ret = session.query(exists().where(User.name == request.form["username"]
-                                       )).scalar()
+                                   )).scalar()
     if ret:
         print "ret: ", ret
         login_session["username"] = request.form["username"]
@@ -62,10 +62,11 @@ def doLogin():
         login_session["user_id"] = user.id
         login_session["school"] = "UIC"
 
-        return render_template('buttons.html' )
+
+        return redirect(url_for('data'))
     else:
         print "the user name does not exist"
-        return render_template('login.html')
+        return render_template('login.html', messege="The user does not exist")
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -144,7 +145,9 @@ def data():
         print "current day: ", now
 
         for t in users_times:
-            if abs(t.time - user_time.time) <= 40:
+            if abs(t.time - user_time.time) <= 40 and t.user_id != \
+                    login_session["user_id"]:
+
                 user = session.query(User).filter_by(id=t.user_id).one()
                 usr["name"] = user.name
                 usr["school_name"] = user.school_name
@@ -184,14 +187,14 @@ def setTimes():
 def three():
 
 
-    session.add(User(name="Seho", password="123", school_name="Depaul",
+    session.add(User(name="Seho", password="123", school_name="UIC",
                      legal_name="seho",
                      profile="./static/images/seho.jpg",
                      phone_number="2247300978",
                      bio = "Just started at UIC"))
 
 
-    session.add(User(name="Jennifer", password="123", school_name="UIC",
+    session.add(User(name="Jennifer", password="123", school_name="Depaul",
                      legal_name="jen",
                      profile="./static/images/jen.jpg",
                      phone_number="2247300978",
@@ -206,7 +209,7 @@ def three():
 
     session.add(User(name="Jorge", password="123", school_name="UIC",
                      legal_name="seho",
-                     profile="./static/images/jorge.png",
+                     profile="./static/images/jorge.jpg",
                      phone_number="2247300978",
                      bio = "Reed <333"))
 
@@ -275,19 +278,19 @@ def three():
 
 
 
-    session.add(Day(time=11 * 60, day=6, available_location="Cafeteria",
+    session.add(Day(time=12 * 60, day=6, available_location="Cafeteria",
                     user_id=1))
 
     session.add(Day(time=12 * 60, day=6, available_location="Cafeteria",
                     user_id=2))
 
-    session.add(Day(time=13 * 60, day=6, available_location="Cafeteria",
+    session.add(Day(time=12 * 60, day=6, available_location="Cafeteria",
                     user_id=3))
 
-    session.add(Day(time=14 * 60, day=6, available_location="Cafeteria",
+    session.add(Day(time=12 * 60, day=6, available_location="Cafeteria",
                     user_id=4))
 
-    session.add(Day(time=11 * 60, day=6, available_location="Cafeteria",
+    session.add(Day(time=12 * 60, day=6, available_location="Cafeteria",
                     user_id=5))
 
     session.add(Day(time=12 * 60, day=6, available_location="Cafeteria",
