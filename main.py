@@ -113,6 +113,7 @@ def data():
                 usr["profile"] = user.profile
                 usr["phone_number"] = user.phone_number
                 usr["time"] = t.time/60
+                usr["bio"] = user.bio
                 matching.append(dict(usr))
 
                 print "available user: ", user.name
@@ -136,33 +137,41 @@ def three():
     session.add(User(name="orange", password="123", school_name="UIC",
                      legal_name="seho",
                      profile="./static/images/profile.png",
-                     phone_number="2247300978",))
+                     phone_number="2247300978",
+                     bio = "hi"
+
 
     session.add(User(name="apple", password="123", school_name="Depaul",
                      legal_name="seho",
-                     profile="./static/images/profile.png", phone_number="2247300978"))
+                     profile="./static/images/profile.png", phone_number="2247300978",
+                     bio = "Just started at UIC"))
 
 
     session.add(User(name="banana", password="123", school_name="UIC",
                      legal_name="seho",
-                     profile="./static/images/profile.png", phone_number="2247300978"))
+                     profile="./static/images/profile.png", phone_number="2247300978",
+                     bio = "I love birds"))
 
     session.add(User(name="oxygen", password="123", school_name="Depaul",
                      legal_name="seho",
-                     profile="./static/images/profile.png", phone_number="2247300978"))
+                     profile="./static/images/profile.png", phone_number="2247300978",
+                     bio = "I sleep with a giant peeps pillow"))
 
 
     session.add(User(name="nitrogen", password="123", school_name="UIC",
                      legal_name="seho",
-                     profile="./static/images/profile.png", phone_number="2247300978"))
+                     profile="./static/images/profile.png", phone_number="2247300978",
+                     bio = "Reed <333"))
 
     session.add(User(name="steak", password="123", school_name="Depaul",
                      legal_name="seho",
-                     profile="./static/images/profile.png", phone_number="2247300978"))
+                     profile="./static/images/profile.png", phone_number="2247300978",
+                     bio = "Wildhacks is making me sleepy"))
 
     session.add(User(name="fish", password="123", school_name="UIC",
                      legal_name="seho",
-                     profile="./static/images/profile.png", phone_number="2247300978"))
+                     profile="./static/images/profile.png", phone_number="2247300978",
+                     bio = "Milkshakes from Potbelly's"))
 
     session.add(Day(time=12 * 60 + 30, day=1, available_location="library",
                     user_id=2))
@@ -208,6 +217,8 @@ def three():
 @app.route("/twilio")
 def twilio():
     # q = session.query(User)
+    # users = session.query(User).all()
+    # print users
     return render_template('twilio.html')
     # return q.column_descriptions
 
