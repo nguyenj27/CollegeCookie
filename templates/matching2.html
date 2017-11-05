@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../static/b.css">
 </head>
 <body>
+
 <div class="container">
     <div class="row">
         <div class="col">
@@ -33,25 +34,21 @@
                 <img class="card-img-top profile-img" src="{{m.profile}}"
                      align="middle">
                 <div class="card-block">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{m.name}}</li>
-                        <li class="list-group-item">{{m.school_name}}</li>
-                        <li class="list-group-item">{{m.phone_number}}</li>
-                        <li class="list-group-item">{{m.time}}</li>
-                    </ul>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <p class="card-text">{{m.name}}</p>
+                    <h4>bio</h4>
+                    <p>{{m.bio}}</p>
+
+                    <a href="#" class="btn btn-primary">Text
+                        Message</a>
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="card">
                 <div class="card-block">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{m.name}}</li>
-                        <li class="list-group-item">{{m.school_name}}</li>
-                        <li class="list-group-item">{{m.phone_number}}</li>
-                        <li class="list-group-item">{{m.time}}</li>
-                    </ul>
+                    <p class="card-text">
+                        {{m.name}} Details
+                    </p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>

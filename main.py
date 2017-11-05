@@ -136,7 +136,7 @@ def three():
     session.add(User(name="orange", password="123", school_name="UIC",
                      legal_name="seho",
                      profile="./static/images/profile.png",
-                     phone_number="2247300978"))
+                     phone_number="2247300978",))
 
     session.add(User(name="apple", password="123", school_name="Depaul",
                      legal_name="seho",
