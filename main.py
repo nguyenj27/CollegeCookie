@@ -19,7 +19,7 @@ session = DBSession()
 
 @app.route("/")
 def main():
-    return "maidfn page"
+    return "empty page"
 
 
 @app.route("/login")
