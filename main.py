@@ -98,26 +98,35 @@ def data():
 
 
     now = datetime.datetime.today().weekday() - 3
+    matching = []
+    usr = {}
     if now in userAvailableDays:
         user_time = session.query(Day).filter_by(user_id=login_session[
             "user_id"], day=now).one()
         users_times = session.query(Day).filter_by(day=now).all()
         print login_session["user_id"]
         print "current day: ", now
-        matching = {}
+
 
         for t in users_times:
             #print "t: ", t
             #print "abs(t.time - user_time.time): ",abs(t.time - user_time.time)
             if abs(t.time - user_time.time) <= 30:
                 user = session.query(User).filter_by(id=t.user_id).one()
+                usr["name"] = user.name
+                usr["school_name"] = user.school_name
+                usr["profile"] = user.profile
+                usr["phone_umber"] = user.phone_number
+                usr["time"] = t.time/60
+                matching.append(usr)
+
                 print "available user: ", user.name
     else:
         error["noMatching"] = "You don't have any matching schedule today!"
 
     # Do it python way!
 
-    return render_template('users.html', users=users)
+    return render_template('matching.html', matching=matching)
 
 
 @app.route('/jen')

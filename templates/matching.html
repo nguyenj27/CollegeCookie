@@ -34,71 +34,23 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
 
   <!-- First Photo Grid-->
+
+
+
+
   <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-    <div class="w3-quarter">
-      <img src="images/seho.jpg"  style="width:100%">
-      <h3>Seho Lim</h3>
-      <p>UIC </p>
-      <p>  Availible at: <i> <b>12:00PM </b></i></p>
-  
-      </div>
-    <div class="w3-quarter">
-      <img src="images/jen.jpg"  style="width:100%">
-      <h3>Jennifer Nguyen</h3>
-      <p>DePaul University </p>
-      <p> Availible at:<i><b>11:45AM </i> </b>
-    </div>
-    <div class="w3-quarter">
-      <img src="images/elona.jpg"  style="width:100%">
-      <h3>Elona Selenica</h3>
-      <p>DePaul University </p>
-      <p> Freshmen, CS Major</p>
-      <p> Availible at:<i><b>1:30AM </i> </b>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/steak.jpg"  style="width:100%">
-      <h3>Jennifer Nguyen</h3>
-      <p>DePaul University </p>
-      <p> Availible at:<i><b>11:45AM </i> </b>
-    </div>
-  
-  <!-- Second Photo Grid-->
-  <div class="w3-row-padding w3-padding-16 w3-center">
-    <div class="w3-quarter">
-      <img src="/w3images/popsicle.jpg"  style="width:100%">
-      <h3>Dave</h3>
-      <p>UIUC</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/salmon.jpg" style="width:100%">
-      <h3>Bob</h3>
-      <p>DePaul University </p>
-      <p> Availible at:<i><b>11:45AM </i> </b>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/sandwich.jpg" style="width:100%">
-      <h3>Julie</h3>
-      <p>UIC </p>
-      <p> Availible at:<i><b>10:45AM </i> </b>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/croissant.jpg"  style="width:100%">
-      <h3>Coco</h3>
-      <p>UIC </p>
-      <p> Availible at:<i><b>11:45AM </i> </b>
-    </div>
-  </div>
+	  {% for m in matching%}
+    <div class="w3-quarter" style="border: 1px black solid;">
+      <h3>{{ m.name}}</h3>
+		<img src="{{m.profile}}" alt="">
+      <p>{{ m.school_name}}</p>
+		<p>{{m.phone_number}}</p>
+		<p>{{m.time}}</p>
+	</div>
+	{% endfor %}
 
   <!-- Pagination -->
   <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
-      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
-    </div>
   </div>
   
   <hr id="about">
