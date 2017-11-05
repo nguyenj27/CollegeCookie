@@ -14,7 +14,6 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 # 1. validate the username and password
 # 2. work on the front end part of the code.
 
-
 # just for temporary
 
 engine = create_engine('sqlite:///main.db')
@@ -95,8 +94,6 @@ def data():
     for a in usertimes:
         userAvailableDays.append(a.day)
 
-
-
     now = datetime.datetime.today().weekday() - 3
     matching = []
     usr = {}
@@ -107,10 +104,7 @@ def data():
         print login_session["user_id"]
         print "current day: ", now
 
-
         for t in users_times:
-            #print "t: ", t
-            #print "abs(t.time - user_time.time): ",abs(t.time - user_time.time)
             if abs(t.time - user_time.time) <= 30:
                 user = session.query(User).filter_by(id=t.user_id).one()
                 usr["name"] = user.name
@@ -125,7 +119,7 @@ def data():
         error["noMatching"] = "You don't have any matching schedule today!"
 
 
-    return render_template('matching.html', matching=matching)
+    return render_template('matching2.html', matching=matching)
 
 
 @app.route('/jen')
@@ -204,7 +198,6 @@ def three():
 
     session.add(Day(time=11*60, day=2, available_location="Cafeteria",
                     user_id=5))
-
 
     session.commit()
 
