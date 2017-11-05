@@ -13,7 +13,7 @@ class User(Base):
 	__tablename__ = 'user'
 	id = Column(Integer, primary_key = True)
 	name = Column(String(20), nullable = False)
-	legal_name = Column(String(30), nullable = False)
+	legal_name = Column(String(30), nullable = True)
 	password = Column(String(20), nullable = False)
 	school_name = Column(String(20), nullable = False)
 	phone_number = Column(String(12), nullable = False)
