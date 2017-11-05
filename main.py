@@ -141,6 +141,14 @@ def data():
     return render_template('matching2.html', matching=matching)
 
 
+@app.route('/setTimes', methods=["GET", "POST"])
+def setTimes():
+    if request.method == 'POST':
+        return hello
+    if request.method == 'GET':
+        return render_template('buttons.html')
+
+
 @app.route('/jen')
 def jen():
 
