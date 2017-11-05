@@ -32,7 +32,7 @@ def login():
 @app.route("/logout")
 def logout():
     login_session.clear()
-    return render_template('login.html')
+    return redirect(url_for('login'))
 
 
 
