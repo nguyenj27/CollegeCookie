@@ -1,3 +1,5 @@
+
+
 .date_form {
 	width: 700px;
 	margin: 0 auto;
@@ -37,13 +39,9 @@ button
     display: inline-block;
     font-size: 16px;
 }
-button:active
-{
-	background: url("burger1.jpg");
-}
+
 body
 {
-	background-image: url("dinner.png")
 	background-size:100% 100%;
-	background-repeat: no-repeat;
+	background-repeat: repeat;
 }
