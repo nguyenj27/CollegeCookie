@@ -18,6 +18,7 @@ class User(Base):
 	school_name = Column(String(20), nullable = False)
 	phone_number = Column(String(12), nullable = False)
 	profile = Column(String(200), nullable = True)
+	bio = Column(String(250), nullable = True)
 
 
 class Day(Base):
