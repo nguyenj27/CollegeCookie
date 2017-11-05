@@ -205,10 +205,6 @@ def three():
     return redirect(url_for('data'))
 
 
-@app.route("/4")
-def four():
-    return "4!"
-
 @app.route("/twilio")
 def twilio():
     # q = session.query(User)
